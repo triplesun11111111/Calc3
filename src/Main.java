@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите выражение!");
+        String input = scanner.nextLine();
+        int result = 0;
+        System.out.println(calc(Integer.toString(result)));
+    }
+
+    public static String calc(String input) throws Exception {
+        String[] data = input.split(" ");
+        char action;
+        int result = 0;
+
+        try {
+            if (data.length != 3) {
+                throw new Exception("Должны вводиться строго два числа c пробелами и знак между ними!");
+            }
+
+            int a = Integer.parseInt(data[0]);
+            action = data[1].charAt(0);
+            int b = Integer.parseInt(data[2]);
+
+            if (a < 1 || b < 1 || a > 10 || b > 10) {
+                throw new IllegalArgumentException("Числа должны находиться" +
+                        " в указанном диапазоне от 1 до 10!");
+            }
+
+            switch (action) {
+                case '+':
+                    result = a + b;
+                    break;
+                case '-':
+                    result = a - b;
+                    break;
+                case '*':
+                    result = a * b;
+                    break;
+                case '/':
+                    if (b == 0) {
+                        throw new ArithmeticException("Деление на ноль!");
+                    } else {
+                        result = a / b;
+                        break;
+                    }
+                default:
+                    throw new IllegalArgumentException("Выражение не содержит нужного знака!");
+            }
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        return Integer.toString(result);
+    }
+}
