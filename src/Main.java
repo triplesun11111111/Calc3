@@ -6,7 +6,7 @@ public class Main {
         System.out.println("Введите выражение!");
         String input = scanner.nextLine();
         int result = 0;
-        System.out.println(calc(Integer.toString(input)));
+        System.out.println(calc(input));
     }
 
     public static String calc(String input) throws Exception {
